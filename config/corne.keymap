@@ -9,6 +9,29 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    macros {
+        TextSelect: TextSelect {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(LEFT))>;
+            label = "TEXTSELECT";
+        };
+
+        BrowserForward: BrowserForward {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp RC(TAB)>;
+            label = "BROWSERFORWARD";
+        };
+
+        BrowserBackward: BrowserBackward {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(LC(TAB))>;
+            label = "BROWSERBACKWARD";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -53,10 +76,10 @@
 
             display-name = "Raise";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &kp PAGE_UP    &trans      &kp UP_ARROW   &trans     &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &kp PAGE_DOWN  &kp LEFT    &kp DOWN       &kp RIGHT  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &kp K_REFRESH  &kp K_BACK  &kp K_FORWARD  &trans     &trans  &trans
-                        &trans  &trans  &trans    &trans         &trans      &trans
+&trans  &trans  &trans  &trans  &trans  &kp C_VOLUME_UP    &kp PAGE_UP    &BrowserBackward  &kp UP_ARROW  &BrowserForward  &kp PRINTSCREEN  &trans
+&trans  &trans  &trans  &trans  &trans  &kp C_VOL_DN       &kp PAGE_DOWN  &kp LEFT          &kp DOWN      &kp RIGHT        &kp C_POWER      &trans
+&trans  &trans  &trans  &trans  &trans  &trans             &trans         &kp HOME          &kp END       &trans           &trans           &trans
+                        &trans  &trans  &trans             &trans         &trans            &trans
             >;
         };
     };
